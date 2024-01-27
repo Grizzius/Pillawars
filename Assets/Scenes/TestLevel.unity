@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 97083475}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!54 &97083474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -777,6 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 261017556}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!1 &577487804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 639051544}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!54 &639051543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1531,6 +1534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 787899519}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!54 &787899518
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2566,6 +2570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 1770493398}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!54 &1770493397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2714,6 +2719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 1803511563}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!54 &1803511562
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2979,6 +2985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 1991715746}
   graber: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!54 &1991715745
 Rigidbody:
   m_ObjectHideFlags: 0

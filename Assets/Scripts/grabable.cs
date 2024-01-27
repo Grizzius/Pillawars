@@ -6,7 +6,7 @@ using UnityEngine;
 public class grabable : MonoBehaviour
 {
     Rigidbody rb;
-    public Collider collider;
+    public Collider _collider;
     public PlayerController graber;
     bool beingThrown = false;
     [SerializeField] private ParticleSystem particle;
@@ -14,24 +14,35 @@ public class grabable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _collider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        while (beingThrown)
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (beingThrown)
         {
-            if(rb.velocity.magnitude > 2)
-            {
-                particle.gameObject.SetActive(true);
-            }
-            else
-            {
-                particle.gameObject.SetActive(false);
-                beingThrown = false;
-            }
+            EndThrow();
         }
+    }
+
+    void StartThrow(Vector3 force)
+    {
+        rb.AddForce(force, ForceMode.Impulse);
+        beingThrown = true;
+        particle.gameObject.SetActive(true);
+    }
+
+    void EndThrow()
+    {
+        beingThrown = false;
+        particle.gameObject.SetActive(false);
     }
 
     public void IsGrabed(PlayerController Graber)
@@ -45,23 +56,26 @@ public class grabable : MonoBehaviour
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.identity;
         rb.isKinematic = true;
-        Physics.IgnoreCollision(collider, other, true);
+        Physics.IgnoreCollision(_collider, other, true);
     }
     public void IsDropped(PlayerController dropper)
     {
-        IsDropped(dropper.GetComponent<Collider>());
+        StartCoroutine(IsDropped(dropper.GetComponent<Collider>()));
     }
 
-    void IsDropped(Collider other)
+    IEnumerator IsDropped(Collider other)
     {
+        graber = null;
+        yield return new WaitForEndOfFrame();
         rb.isKinematic = false;
-        Physics.IgnoreCollision(collider, other, false);
+        yield return new WaitForSeconds(0.1f);
+        Physics.IgnoreCollision(_collider, other, false);
     }
 
-    public void Yeet(Vector3 force, PlayerController dropper)
+    public IEnumerator Yeet(Vector3 force, PlayerController dropper)
     {
         IsDropped(dropper);
-        rb.AddForce(force);
-        beingThrown = true;
+        yield return new WaitForEndOfFrame();
+        StartThrow(force);
     }
 }
