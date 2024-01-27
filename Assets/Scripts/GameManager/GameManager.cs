@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+public class GameManager : StateMachine
 {
     public List<PlayerInput> playerInputList;
     public InGameMenu gameMenu;
     public PlayerInputManager playerInputManager;
     public PlayerInput player1Prefab;
-    PlayerInput player1;
+    public CameraPivot cameraPivot;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
         playerInputList = new List<PlayerInput>();
         playerInputManager = GetComponent<PlayerInputManager>();
         playerInputManager.EnableJoining();
-        //player1 = Instantiate(player1Prefab);
+
+        SetState(new StatePlayerJoin(this));
     }
 
     // Update is called once per frame
@@ -28,14 +29,11 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer(PlayerInput newPlayer)
     {
-        playerInputList.Add(newPlayer);
-        print("Player " + (LastPlayerID()) + " joins !");
-        gameMenu.PlayerJoin(LastPlayerID());
-       
+        state.AddPlayer(newPlayer);
     }
 
-    int LastPlayerID()
+    public void ReceivePlayerInput(PlayerInput player)
     {
-        return playerInputList.ToArray().Length - 1;
+        state.ReceivePlayerInput(player);
     }
 }

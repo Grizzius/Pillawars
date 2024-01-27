@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 1
   joinedColor: {r: 0.3722855, g: 0.55893284, b: 0.8867924, a: 1}
+  readyColor: {r: 0.2863564, g: 0.9339623, b: 0.45055687, a: 1}
 --- !u!1 &3426278207730644735
 GameObject:
   m_ObjectHideFlags: 0

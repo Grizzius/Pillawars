@@ -53,4 +53,9 @@ public class InGameMenu : MonoBehaviour
     {
         playerJoinMenu.displaysPlayerJoined[playerID].OnPlayerFound();
     }
+
+    public void PlayerReady(int playerID)
+    {
+        playerJoinMenu.displaysPlayerJoined[playerID].OnPlayerReady();
+    }
 }

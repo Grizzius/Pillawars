@@ -10,6 +10,7 @@ public class DisplayPlayerJoined : MonoBehaviour
     Image image;
     public int playerID;
     public Color joinedColor;
+    public Color readyColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +29,11 @@ public class DisplayPlayerJoined : MonoBehaviour
     {
         image.color = joinedColor;
         text.text = new string("Player " + playerID + " joined !");
+    }
+
+    public void OnPlayerReady()
+    {
+        image.color = readyColor;
+        text.text = new string("Player " + playerID + " is ready !");
     }
 }
