@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
     {
-        Debug.Log("Movement update");
+        //Debug.Log("Movement update");
         PlayerMovementInput = callbackContext.ReadValue<Vector2>();
         if(PlayerMovementInput != Vector2.zero ) 
         {
@@ -102,7 +102,6 @@ public class Movement : MonoBehaviour
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         MovePlayer();
-        
     }
 
     private void MovePlayer()
