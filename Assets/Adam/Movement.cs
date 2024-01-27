@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     private Vector2 PlayerMouseInput;
     private float xRot;
 
-
+    [SerializeField] private PlayerInput input;
     
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Transform PlayerCamera;
@@ -103,8 +103,16 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
         MovePlayer();
+    }
+
+
+    public void OnJump(InputAction.CallbackContext callbackContext)
+    {        
+        if (callbackContext.performed && Physics.CheckSphere(Feet.position, 0.2f, Floor))
+        {
+            playerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        }
     }
 
     private void MovePlayer()
