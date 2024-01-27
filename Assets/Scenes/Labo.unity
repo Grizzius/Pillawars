@@ -1439,13 +1439,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497647318}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.02, y: 4.25, z: -16.05}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.5, y: 27.6, z: -2.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &524068404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,15 +2907,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5565915
+      value: 11.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000071525574
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7505379
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6094,9 +6094,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   Feet: {fileID: 1171823433}
+  jumpUpAngle: 4
+  timerJump: 0
+  DefautJumpDuration: 0.1
+  maxJumpDuration: 0.4
+  isJumpings: 0
   Speed: 5
   Sensitivity: 1
-  JumpForce: 6
+  JumpForce: 3
   rbList: []
   animator: {fileID: 0}
 --- !u!4 &1217607626 stripped
@@ -6184,7 +6189,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217607622}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 271442f5ab2e2714fab75173deb32f03, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

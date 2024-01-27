@@ -15,8 +15,6 @@ providers = {
 		priority = 90
 		defaultAction = null
 	}
-<<<<<<< HEAD
-=======
 	adb = {
 		active = false
 		priority = 2500
@@ -37,61 +35,26 @@ providers = {
 		priority = 210
 		defaultAction = null
 	}
->>>>>>> origin/ragdoll
 	profilermarkers = {
 		active = false
 		priority = 100
 		defaultAction = null
 	}
-<<<<<<< HEAD
-=======
 	performance = {
 		active = false
 		priority = 100
 		defaultAction = null
 	}
->>>>>>> origin/ragdoll
 	store = {
 		active = true
 		priority = 100
 		defaultAction = null
 	}
-<<<<<<< HEAD
-	log = {
-		active = false
-		priority = 210
-		defaultAction = null
-	}
-=======
->>>>>>> origin/ragdoll
 	scene = {
 		active = true
 		priority = 50
 		defaultAction = null
 	}
-<<<<<<< HEAD
-	find = {
-		active = true
-		priority = 25
-		defaultAction = null
-	}
-	performance = {
-		active = false
-		priority = 100
-		defaultAction = null
-	}
-	adb = {
-		active = false
-		priority = 2500
-		defaultAction = null
-	}
-	asset = {
-		active = true
-		priority = 25
-		defaultAction = null
-	}
-=======
->>>>>>> origin/ragdoll
 }
 objectSelectors = {
 }
