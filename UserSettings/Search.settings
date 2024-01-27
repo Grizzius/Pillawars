@@ -8,9 +8,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+<<<<<<< HEAD
 	"last_search.310DEAF1" = ""
 	"OpenInspectorPreview.310DEAF1" = "0"
 	"currentGroup.310DEAF1" = "all"
+=======
+>>>>>>> origin/Déplacement
 }
 providers = {
 	packages = {
@@ -18,6 +21,7 @@ providers = {
 		priority = 90
 		defaultAction = null
 	}
+<<<<<<< HEAD
 	profilermarkers = {
 		active = false
 		priority = 100
@@ -48,6 +52,8 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
+=======
+>>>>>>> origin/Déplacement
 	adb = {
 		active = false
 		priority = 2500
@@ -58,6 +64,39 @@ providers = {
 		priority = 25
 		defaultAction = null
 	}
+<<<<<<< HEAD
+=======
+	find = {
+		active = true
+		priority = 25
+		defaultAction = null
+	}
+	log = {
+		active = false
+		priority = 210
+		defaultAction = null
+	}
+	profilermarkers = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	performance = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	store = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+	scene = {
+		active = true
+		priority = 50
+		defaultAction = null
+	}
+>>>>>>> origin/Déplacement
 }
 objectSelectors = {
 }
