@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.0f, 0.4f }, {1, .65f}, {2, .9f}
+        { 0.0f, 0.3f }, {2, .5f}
     };
 
 
@@ -58,7 +58,6 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("move", true);
             lastPlayerDirection = PlayerMovementInput;
-            
         }
         else
         {
@@ -113,7 +112,7 @@ public class Movement : MonoBehaviour
     {        
         if(isJumpings)
         {
-            //playerBody.AddForce(new Vector3(jumpDirection.x * JumpForce, 0, jumpDirection.y * JumpForce), ForceMode.VelocityChange);
+            playerBody.AddForce(new Vector3(jumpDirection.x * JumpForce, 0, jumpDirection.y * JumpForce), ForceMode.VelocityChange);
         }
         else
         {
@@ -143,8 +142,9 @@ public class Movement : MonoBehaviour
         }
         if (jumpDuration > 0)
         {
-            playerBody.AddForce((Vector3.up * jumpUpAngle), ForceMode.Impulse);
-            jumpDirection = transform.forward;
+            //playerBody.AddForce((Vector3.up * jumpUpAngle), ForceMode.Impulse);
+            jumpDirection = new Vector3(lastPlayerDirection.x, 0, lastPlayerDirection.y);
+            Debug.Log(jumpDirection);
             StartCoroutine(JumpDuration(jumpDuration));
         }
         timerJump = 0;
@@ -178,9 +178,12 @@ public class Movement : MonoBehaviour
         float t = deltaTime;
         animator.SetBool("jump", true);
         isJumpings = true;
+
+        jumpDirection = transform.forward;
         while (t > 0)
         {
-            playerBody.AddForce(new Vector3(jumpDirection.x * JumpForce, 0, jumpDirection.y * JumpForce), ForceMode.VelocityChange);
+            Debug.Log(jumpDirection);
+            playerBody.AddForce(jumpDirection * JumpForce, ForceMode.VelocityChange);
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
