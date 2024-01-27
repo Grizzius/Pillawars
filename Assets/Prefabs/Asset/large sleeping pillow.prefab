@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2149848514689431666}
   - component: {fileID: 3002201674563708376}
   - component: {fileID: 4686004530700308331}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: large sleeping pillow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
