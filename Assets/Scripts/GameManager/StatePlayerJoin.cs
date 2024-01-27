@@ -26,6 +26,15 @@ public class StatePlayerJoin : GameState
         gameManager.cameraPivot.AddPlayer(newPlayer);
         Debug.Log("Player " + (LastPlayerID()) + " joins !");
         gameManager.gameMenu.PlayerJoin(LastPlayerID());
+
+        newPlayer.transform.position = SpawnManager.Instance.RollSpawn();
+        Debug.Log("Spawn : " + newPlayer.gameObject);
+    }
+
+    public void SpawnPositionPlayer(PlayerInput newPlayer)
+    {
+        newPlayer.transform.position = SpawnManager.Instance.RollSpawn();
+        Debug.Log("Spawn : " + newPlayer.gameObject);
     }
 
     int LastPlayerID()
