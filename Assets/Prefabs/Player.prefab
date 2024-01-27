@@ -167,6 +167,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7db73fe5-7341-46d1-9169-e2d9918898d2
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 466fb2f0-afb4-4120-a149-95012a6d8f5b
+    m_ActionName: Player/Jump[/Keyboard/space,/DualSenseGamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -257,15 +261,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559da7216df4728469de21ed1ccef76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  input: {fileID: 0}
   playerBody: {fileID: 1206853420975680746}
   PlayerCamera: {fileID: 0}
   Floor:
     serializedVersion: 2
     m_Bits: 0
   Feet: {fileID: 7571890388810972356}
+  jumpUpAngle: 10
+  timerJump: 0
+  jumpDuration: 0
+  maxJumpDuration: 2
+  turnSpeed: 0
+  isJumpings: 0
   Speed: 5
   Sensitivity: 1
-  JumpForce: 5
+  JumpForce: 10
 --- !u!54 &1206853420975680746
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -305,3 +317,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6a6ba8e744e1f4c8abafc9f8b1cda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabTransform: {fileID: 0}
+  grabed: {fileID: 0}

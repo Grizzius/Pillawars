@@ -1845,7 +1845,7 @@ MonoBehaviour:
   isJumpings: 0
   Speed: 5
   Sensitivity: 1
-  JumpForce: 0.1
+  JumpForce: 1
 --- !u!114 &7197002340606617923
 MonoBehaviour:
   m_ObjectHideFlags: 0
