@@ -8,6 +8,8 @@ public class grabable : MonoBehaviour
     Rigidbody rb;
     public Collider collider;
     public PlayerController graber;
+    bool beingThrown = false;
+    [SerializeField] private ParticleSystem particle;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,18 @@ public class grabable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        while (beingThrown)
+        {
+            if(rb.velocity.magnitude > 2)
+            {
+                particle.gameObject.SetActive(true);
+            }
+            else
+            {
+                particle.gameObject.SetActive(false);
+                beingThrown = false;
+            }
+        }
     }
 
     public void IsGrabed(PlayerController Graber)
@@ -49,5 +62,6 @@ public class grabable : MonoBehaviour
     {
         IsDropped(dropper);
         rb.AddForce(force);
+        beingThrown = true;
     }
 }

@@ -12,18 +12,34 @@ public class PlayerController : MonoBehaviour
     PlayerInput playerInput;
     [SerializeField] Transform grabTransform;
     public grabable grabed;
-
+    private List<grabable> canBeGrabbed;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         playerInput = GetComponent<PlayerInput>();
+        canBeGrabbed = new();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetType() == typeof(grabable))
+        {
+            canBeGrabbed.Add(other.GetComponent<grabable>());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (canBeGrabbed.Contains(other.GetComponent<grabable>()))
+        {
+            canBeGrabbed.Remove(other.GetComponent<grabable>());
+        }
     }
 
     public void SendInputToGameManager(InputAction.CallbackContext callbackContext)
@@ -62,17 +78,12 @@ public class PlayerController : MonoBehaviour
     }
     void TestForGrab()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
+        Dictionary<grabable, float> distances = new();
+;       foreach(grabable grabable in canBeGrabbed)
         {
-            Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.blue);
-            Debug.Log("Did hit");
-            grabable hitGrabable = hit.transform.gameObject.GetComponent<grabable>();
-            if (hitGrabable != null)
-            {
-                GrabItem(hitGrabable);
-            }
+            distances.Add(grabable, Vector3.Distance(transform.position, grabable.transform.position));
         }
+        Dictionary<>
     }
     void GrabItem(grabable item)
     {

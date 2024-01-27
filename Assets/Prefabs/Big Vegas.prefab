@@ -250,7 +250,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3991491857640604296
@@ -1183,6 +1183,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7853730944280667168}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1078261366735524203}
     - targetCorrespondingSourceObject: {fileID: 1293756992360467578, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3815219767022676320}
@@ -1828,7 +1831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5101868098796289345}
   input: {fileID: 0}
-  playerBody: {fileID: 4418263166373898650}
+  playerBody: {fileID: 7853730944280667168}
   PlayerCamera: {fileID: 0}
   Floor:
     serializedVersion: 2
@@ -1842,7 +1845,7 @@ MonoBehaviour:
   isJumpings: 0
   Speed: 5
   Sensitivity: 1
-  JumpForce: 0.2
+  JumpForce: 0.1
 --- !u!114 &7197002340606617923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,6 +2057,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!135 &1078261366735524203
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826231518531771252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3953571162081769519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 07ad00fb51f29494ba889294347f1536, type: 3}

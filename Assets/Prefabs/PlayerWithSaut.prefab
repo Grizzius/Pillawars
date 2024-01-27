@@ -193,13 +193,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559da7216df4728469de21ed1ccef76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   input: {fileID: 6927387025166821476}
   playerBody: {fileID: 1465679362567467006}
   PlayerCamera: {fileID: 0}
   Floor:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   Feet: {fileID: 5788364149396692634}
+  jumpUpAngle: 10
+  timerJump: 0
+  jumpDuration: 0
+  maxJumpDuration: 2
+  turnSpeed: 0
+  isJumpings: 0
   Speed: 5
   Sensitivity: 1
   JumpForce: 5

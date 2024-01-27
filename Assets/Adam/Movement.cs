@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.0f, 0.5f }, {2, 1f}
+        { 0.0f, 0.4f }, {1, .65f}, {2, .9f}
     };
 
 
@@ -104,7 +104,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MovePlayer();
     }
@@ -113,7 +113,7 @@ public class Movement : MonoBehaviour
     {        
         if(isJumpings)
         {
-            playerBody.AddForce(new Vector3(jumpDirection.x * JumpForce, 0, jumpDirection.y * JumpForce), ForceMode.VelocityChange);
+            //playerBody.AddForce(new Vector3(jumpDirection.x * JumpForce, 0, jumpDirection.y * JumpForce), ForceMode.VelocityChange);
         }
         else
         {
@@ -143,8 +143,8 @@ public class Movement : MonoBehaviour
         }
         if (jumpDuration > 0)
         {
-            playerBody.AddForce(Vector3.up * jumpUpAngle, ForceMode.Impulse);
-            jumpDirection = lastPlayerDirection;
+            playerBody.AddForce((Vector3.up * jumpUpAngle), ForceMode.Impulse);
+            jumpDirection = transform.forward;
             StartCoroutine(JumpDuration(jumpDuration));
         }
         timerJump = 0;
@@ -175,9 +175,16 @@ public class Movement : MonoBehaviour
 
     IEnumerator JumpDuration(float deltaTime)
     {
+        float t = deltaTime;
         animator.SetBool("jump", true);
         isJumpings = true;
-        yield return new WaitForSeconds(deltaTime);
+        while (t > 0)
+        {
+            playerBody.AddForce(new Vector3(jumpDirection.x * JumpForce, 0, jumpDirection.y * JumpForce), ForceMode.VelocityChange);
+            t -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("isJumpings set to false");
         playerBody.velocity = Vector3.zero;
         isJumpings = false;
         animator.SetBool("jump", false);
