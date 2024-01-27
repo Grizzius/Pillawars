@@ -78,12 +78,13 @@ public class PlayerController : MonoBehaviour
     {
         item.transform.parent = grabTransform;
         grabed = item;
+        grabed.IsGrabed(this);
     }
 
     void ThrowItem()
     {
         Debug.Log("yeet");
         grabed.transform.parent = null;
-        grabed.Yeet(transform.forward * 1000);
+        grabed.Yeet(transform.forward * 1000, this);
     }
 }

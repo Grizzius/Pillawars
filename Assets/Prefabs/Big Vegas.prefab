@@ -1166,6 +1166,9 @@ PrefabInstance:
       addedObject: {fileID: 5099683827816407666}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7197002340606617923}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2521255995888726419}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       insertIndex: -1
@@ -1677,6 +1680,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!4 &2336598894598396397 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
+  m_PrefabInstance: {fileID: 4168337206985909797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2894884079845681759 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1293756992360467578, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
@@ -1823,13 +1831,26 @@ MonoBehaviour:
   Feet: {fileID: 6595509890406980565}
   jumpUpAngle: 4
   timerJump: 0
-  DefautJumpDuration: 0.1
   jumpDuration: 0
   maxJumpDuration: 0.4
   isJumpings: 0
   Speed: 5
   Sensitivity: 1
   JumpForce: 3
+--- !u!114 &7197002340606617923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826231518531771252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6a6ba8e744e1f4c8abafc9f8b1cda1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabTransform: {fileID: 2336598894598396397}
+  grabed: {fileID: 0}
 --- !u!114 &2521255995888726419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1872,7 +1893,31 @@ MonoBehaviour:
     m_ActionId: d5e21602-fed5-4e8d-8fcd-99743faa3a69
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7197002340606617923}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SendInputToGameManager
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7197002340606617923}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGrabItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 502123d8-e0ad-4868-8bb9-f853dcb0b9ee
     m_ActionName: Player/Action[/DualSenseGamepadHID/buttonEast,/DualShock4GamepadHID/buttonEast,/Keyboard/e]
   - m_PersistentCalls:

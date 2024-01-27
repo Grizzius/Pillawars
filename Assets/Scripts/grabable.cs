@@ -21,13 +21,17 @@ public class grabable : MonoBehaviour
         
     }
 
-    public void IsGrabed(PlayerController graber)
+    public void IsGrabed(PlayerController Graber)
     {
+        graber = Graber;
         IsGrabed(graber.GetComponent<Collider>());
     }
 
     void IsGrabed(Collider other)
     {
+        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localRotation = Quaternion.identity;
+        rb.isKinematic = true;
         Physics.IgnoreCollision(collider, other, true);
     }
     public void IsDropped(PlayerController dropper)
@@ -37,11 +41,13 @@ public class grabable : MonoBehaviour
 
     void IsDropped(Collider other)
     {
+        rb.isKinematic = false;
         Physics.IgnoreCollision(collider, other, false);
     }
 
-    public void Yeet(Vector3 force)
+    public void Yeet(Vector3 force, PlayerController dropper)
     {
+        IsDropped(dropper);
         rb.AddForce(force);
     }
 }
