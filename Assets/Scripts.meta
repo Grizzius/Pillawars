@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a09f041ee5da06a41ace7232fc6b2d0a
+=======
+guid: 683731d88037b134382d0c2c5cadc69f
+>>>>>>> origin/ragdoll
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
