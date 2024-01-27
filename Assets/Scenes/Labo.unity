@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2907,11 +2907,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.8
+      value: 10.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07ad00fb51f29494ba889294347f1536, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6092,11 +6092,12 @@ MonoBehaviour:
   PlayerCamera: {fileID: 0}
   Floor:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   Feet: {fileID: 1171823433}
   jumpUpAngle: 4
   timerJump: 0
   DefautJumpDuration: 0.1
+  jumpDuration: 0
   maxJumpDuration: 0.4
   isJumpings: 0
   Speed: 5
@@ -6150,6 +6151,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d5e21602-fed5-4e8d-8fcd-99743faa3a69
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 502123d8-e0ad-4868-8bb9-f853dcb0b9ee
+    m_ActionName: Player/Action[/DualSenseGamepadHID/buttonEast,/DualShock4GamepadHID/buttonEast,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a3090999-09f1-4fc1-af50-05bcd8fcecc6
+    m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/up,/DualSenseGamepadHID/rightStick/up,/DualShock4GamepadHID/rightStick/up,/DualSenseGamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/down,/DualSenseGamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/down,/DualSenseGamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/left,/DualSenseGamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/left,/DualSenseGamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/right,/DualSenseGamepadHID/rightStick/right,/DualShock4GamepadHID/rightStick/right,/DualSenseGamepadHID/dpad,/DualShock4GamepadHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f182379-8fd6-485a-89a3-e2a7026b78cd
+    m_ActionName: UI/Submit[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d67bd50-6b47-4dbe-85a6-3ea725fc49ab
+    m_ActionName: UI/Cancel[/Keyboard/escape,/DualSenseGamepadHID/buttonEast,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d88828e8-146c-4e90-a529-4653fb5f4244
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8753b796-c6c7-42ac-97b2-8f7abaa7aca9
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6cc87e69-3222-40dc-9dcc-148f7a771091
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fd13d466-464a-4b63-9f04-971a0b4f8513
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3b1bb10-d39e-473d-9d32-d86e17923ac9
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2fe15ecd-10f7-46e7-ada3-0779ccf47a7e
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7db73fe5-7341-46d1-9169-e2d9918898d2
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -9467,71 +9512,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &2034878460
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5838539070114080981, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5838539070114080981, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: Floor.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.1739492
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00000011920929
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.20880485
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122329945062789848, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7926602756448885622, guid: c42ef55d4859b6643b641b315305a404, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c42ef55d4859b6643b641b315305a404, type: 3}
 --- !u!1 &2098958861
 GameObject:
   m_ObjectHideFlags: 0
@@ -9647,7 +9627,6 @@ SceneRoots:
   - {fileID: 469447053}
   - {fileID: 27965435}
   - {fileID: 714504615}
-  - {fileID: 2034878460}
   - {fileID: 721060574}
   - {fileID: 1913538222}
   - {fileID: 1928350987}
