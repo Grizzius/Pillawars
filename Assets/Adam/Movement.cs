@@ -10,9 +10,6 @@ public class Movement : MonoBehaviour
     public Animator animator;
     private Vector2 PlayerMovementInput;
     private Vector2 lastPlayerDirection;
-    private bool playerJumpInput;
-    private Vector2 PlayerMouseInput;
-    private float xRot;
 
     [SerializeField] private PlayerInput input;
     
@@ -27,6 +24,7 @@ public class Movement : MonoBehaviour
     public float timerJump = 0;
     public float jumpDuration = 0;
     public float maxJumpDuration = 2;
+    public float turnSpeed;
     public bool isJumpings = false;
 
     enum JumpCharge
@@ -40,7 +38,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.0f, 0.15f }, {2, 0.3f}
+        { 0.0f, 0.5f }, {2, 1f}
     };
 
 
@@ -60,6 +58,7 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("move", true);
             lastPlayerDirection = PlayerMovementInput;
+            
         }
         else
         {
@@ -67,10 +66,15 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void RotateForward(Vector2 direction)
+    {
+        Quaternion rotGoal = Quaternion.LookRotation(new Vector3(direction.x,0,direction.y));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
+    }
+
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
         Debug.Log("Jump");
-        playerJumpInput = callbackContext.ReadValueAsButton();
 
         if (callbackContext.started)
         {
@@ -102,7 +106,6 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         MovePlayer();
     }
 
@@ -114,8 +117,12 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput.x, 0, PlayerMovementInput.y) * Speed;
-            playerBody.velocity = new Vector3(MoveVector.x, playerBody.velocity.y, MoveVector.z);
+            Vector3 MoveVector = new Vector3(PlayerMovementInput.x, 0, PlayerMovementInput.y) * Speed * Time.deltaTime;
+            transform.position += MoveVector;
+            if (PlayerMovementInput != Vector2.zero)
+            {
+                RotateForward(PlayerMovementInput);
+            } 
         }
     }
 
