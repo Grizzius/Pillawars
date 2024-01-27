@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     private Vector2 PlayerMouseInput;
     private float xRot;
 
-
+    [SerializeField] private PlayerInput input;
     
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Transform PlayerCamera;
@@ -23,13 +23,34 @@ public class Movement : MonoBehaviour
     [SerializeField] private float JumpForce;
 
 
+<<<<<<< Updated upstream
+=======
+    private void Awake()
+    {
+        playerBody = GetComponent<Rigidbody>();
+        input = GetComponent<PlayerInput>();
+    }
+
+    public void OnMovement(InputAction.CallbackContext callbackContext)
+    {
+        PlayerMovementInput = callbackContext.ReadValue<Vector2>();
+    }
+>>>>>>> Stashed changes
 
     private void Update()
     {
         PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
         MovePlayer();
+    }
+
+
+    public void OnJump(InputAction.CallbackContext callbackContext)
+    {        
+        if (callbackContext.performed && Physics.CheckSphere(Feet.position, 0.2f, Floor))
+        {
+            playerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        }
     }
 
     private void MovePlayer()
@@ -37,7 +58,7 @@ public class Movement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
         playerBody.velocity = new Vector3(MoveVector.x, playerBody.velocity.y, MoveVector.z);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (input.actions["Jump"].triggered)
         {
             if(Physics.CheckSphere(Feet.position, 0.1f, Floor))
             {
