@@ -16,12 +16,14 @@ public class PlayerController : MonoBehaviour
     public grabable grabed;
     Coroutine grabItemRoutine = null;
     private List<grabable> canBeGrabbed;
+    private Movement movement;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         playerInput = GetComponent<PlayerInput>();
         canBeGrabbed = new();
+        movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -121,8 +123,20 @@ public class PlayerController : MonoBehaviour
 
     void ThrowItem(Vector3 direction)
     {
-        print("yeet");
         grabed.transform.parent = null;
         StartCoroutine(grabed.Yeet(direction * yeetStrenght, this));
+        grabed = null;
+    }
+
+    public void Bonk()
+    {
+        StartCoroutine(BonkCoroutine());
+    }
+
+    IEnumerator BonkCoroutine()
+    {
+
+        yield return new WaitForSeconds(0.3f);
+
     }
 }

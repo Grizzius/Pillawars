@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,7 +10,7 @@ public class grabable : MonoBehaviour
     public Collider _collider;
     public PlayerController graber;
     bool beingThrown = false;
-    [SerializeField] private ParticleSystem particle;
+    [SerializeField] private TrailRenderer particle;
 
     // Start is called before the first frame update
     void Start()
@@ -24,23 +25,21 @@ public class grabable : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (beingThrown)
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            EndThrow();
+            player.Bonk();
         }
     }
 
-    void StartThrow(Vector3 force)
+    IEnumerator StartThrow(Vector3 force)
     {
         rb.AddForce(force, ForceMode.Impulse);
         beingThrown = true;
         particle.gameObject.SetActive(true);
-    }
-
-    void EndThrow()
-    {
+        yield return new WaitForSeconds(2);
         beingThrown = false;
         particle.gameObject.SetActive(false);
     }
@@ -76,6 +75,6 @@ public class grabable : MonoBehaviour
     {
         IsDropped(dropper);
         yield return new WaitForEndOfFrame();
-        StartThrow(force);
+        StartCoroutine(StartThrow(force));
     }
 }
