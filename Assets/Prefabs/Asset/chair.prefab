@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 801356271700800181}
   - component: {fileID: 6902360003970396518}
   - component: {fileID: 7822681403078692925}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4977,6 +4977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b216b4479ec5664b8019892617c5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 801356271700800181}
+  _collider: {fileID: 0}
   graber: {fileID: 0}
   particle: {fileID: 182012120621094372}

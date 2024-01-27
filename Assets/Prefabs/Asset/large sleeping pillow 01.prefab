@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2299154397207581390}
   - component: {fileID: 8201944522502959850}
   - component: {fileID: 872384434404824653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: large sleeping pillow 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b216b4479ec5664b8019892617c5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 8201944522502959850}
+  _collider: {fileID: 0}
   graber: {fileID: 0}
   particle: {fileID: 3046003964433015380}
 --- !u!1 &1284032678608756317

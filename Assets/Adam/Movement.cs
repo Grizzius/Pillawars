@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.0f, 0.3f }, {2, .5f}
+        { 0.0f, 0.4f }, {2, .6f}
     };
 
 
@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
     {
-        PlayerMovementInput = callbackContext.ReadValue<Vector2>();
+        PlayerMovementInput = callbackContext.ReadValue<Vector2>().normalized;
         if(PlayerMovementInput != Vector2.zero ) 
         {
             animator.SetBool("move", true);
@@ -178,12 +178,11 @@ public class Movement : MonoBehaviour
         float t = deltaTime;
         animator.SetBool("jump", true);
         isJumpings = true;
-
-        jumpDirection = transform.forward;
+        jumpDirection = transform.forward * JumpForce;
         while (t > 0)
         {
             Debug.Log(jumpDirection);
-            playerBody.AddForce(jumpDirection * JumpForce, ForceMode.VelocityChange);
+            playerBody.AddForce(jumpDirection, ForceMode.VelocityChange);
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
