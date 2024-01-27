@@ -106,15 +106,6 @@ public class Movement : MonoBehaviour
         MovePlayer();
     }
 
-
-    public void OnJump(InputAction.CallbackContext callbackContext)
-    {        
-        if (callbackContext.performed && Physics.CheckSphere(Feet.position, 0.2f, Floor))
-        {
-            playerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-        }
-    }
-
     private void MovePlayer()
     {        
         if(isJumpings)
