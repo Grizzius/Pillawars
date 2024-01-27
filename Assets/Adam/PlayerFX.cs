@@ -19,7 +19,8 @@ public class PlayerFX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetJumpCharge(playerMovement.GetJumpCharge());
+        float ratio = playerMovement.GetJumpCharge();
+        SetJumpCharge(ratio);
     }
 
     public void InitColor()

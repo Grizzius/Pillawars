@@ -6,6 +6,7 @@ public class StateMainGame : GameState
 {
     public StateMainGame(GameManager GameManager) : base(GameManager)
     {
+
     }
 
     public override IEnumerator Start()
