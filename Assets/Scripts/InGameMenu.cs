@@ -8,10 +8,11 @@ public class InGameMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public string sceneMenuName;
-
+    public PlayerJoinMenu playerJoinMenu;
     // Start is called before the first frame update
     void Start()
     {
+        playerJoinMenu = GetComponentInChildren<PlayerJoinMenu>();
         ResumeGame();
     }
 
@@ -46,5 +47,10 @@ public class InGameMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(sceneMenuName);
+    }
+
+    public void PlayerJoin(int playerID)
+    {
+        playerJoinMenu.displaysPlayerJoined[playerID].OnPlayerFound();
     }
 }
