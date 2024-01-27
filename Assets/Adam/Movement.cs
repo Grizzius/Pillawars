@@ -147,6 +147,7 @@ public class Movement : MonoBehaviour
             jumpDirection = lastPlayerDirection;
             StartCoroutine(JumpDuration(jumpDuration));
         }
+        timerJump = 0;
     }
 
     /// <summary>
