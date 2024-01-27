@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
 
-    private Vector3 PlayerMovementInput;
+    private Vector2 PlayerMovementInput;
     private Vector2 PlayerMouseInput;
     private float xRot;
 
@@ -22,11 +23,18 @@ public class Movement : MonoBehaviour
     [SerializeField] private float Sensitivity;
     [SerializeField] private float JumpForce;
 
+    private void Start()
+    {
 
+    }
+
+    public void OnMovement(InputAction.CallbackContext callbackContext)
+    {
+        PlayerMovementInput = callbackContext.ReadValue<Vector2>();
+    }
 
     private void Update()
     {
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         MovePlayer();
@@ -34,7 +42,7 @@ public class Movement : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput.x,0, PlayerMovementInput.y) * Speed;
         playerBody.velocity = new Vector3(MoveVector.x, playerBody.velocity.y, MoveVector.z);
 
         if (Input.GetKeyDown(KeyCode.Space))
