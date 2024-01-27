@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-
+    public Animator animator;
     private Vector2 PlayerMovementInput;
     private Vector2 lastPlayerDirection;
     private bool playerJumpInput;
@@ -24,10 +25,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform Feet;
     public float jumpUpAngle = 10;
     public float timerJump = 0;
-    public float DefautJumpDuration = 1;
     public float jumpDuration = 0;
     public float maxJumpDuration = 2;
     public bool isJumpings = false;
+
     enum JumpCharge
     {
         normal,
@@ -35,50 +36,52 @@ public class Movement : MonoBehaviour
         tresLoin
     }
     /// <summary>
-    /// Temps de touche maintenue requis en clé et le temps de saut à appliquer en valeur
+    /// Temps de touche maintenue requis en clï¿½ et le temps de saut ï¿½ appliquer en valeur
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.25f, 0.1f }, {1, 0.15f}, {2, 0.3f}
+        { 0.0f, 0.15f }, {2, 0.3f}
     };
 
 
     [SerializeField] private float Speed;
     [SerializeField] private float Sensitivity;
     [SerializeField] private float JumpForce;
-    public List<Rigidbody2D> rbList;
-    public Animator animator;
 
     private void Start()
     {
         setKinematic(true);
-
-
     }
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
     {
-        //Debug.Log("Movement update");
         PlayerMovementInput = callbackContext.ReadValue<Vector2>();
         if(PlayerMovementInput != Vector2.zero ) 
         {
+            animator.SetBool("move", true);
             lastPlayerDirection = PlayerMovementInput;
+        }
+        else
+        {
+            animator.SetBool("move", false);
         }
     }
 
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
+        Debug.Log("Jump");
         playerJumpInput = callbackContext.ReadValueAsButton();
 
         if (callbackContext.started)
         {
+            Debug.Log("CCCCOMMMMMMMMENCCCCE");
             StartCoroutine(HoldButtonRoutine());
         }
 
         IEnumerator HoldButtonRoutine()
         {
             Debug.Log("Jump started");
-            timerJump = DefautJumpDuration;
+            timerJump = 0;
             yield return new WaitForEndOfFrame();
             if (callbackContext.canceled)
             {
@@ -141,42 +144,7 @@ public class Movement : MonoBehaviour
     }
 
     /// <summary>
-    /// Gestion de l'input de saut
-    /// </summary>
-    /// <returns></returns>
-    public bool HoldJump()
-    {
-        if (Physics.OverlapSphere(Feet.position, 0.1f, Floor).Length > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                timerJump = DefautJumpDuration;
-                return true;
-            }
-            else if (Input.GetKey(KeyCode.Space))
-            {
-                timerJump += Time.deltaTime;
-                return true;
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                Debug.Log("Saute " + timerJump);
-                Jump(Mathf.Clamp(timerJump, DefautJumpDuration, maxJumpDuration));
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// true quand on veut que le personnage soit contrôlable
+    /// true quand on veut que le personnage soit contrï¿½lable
     /// false lorsque l'on veut profiter de la ragdoll
     /// </summary>
     /// <param name="newValue"></param>
@@ -200,10 +168,25 @@ public class Movement : MonoBehaviour
 
     IEnumerator JumpDuration(float deltaTime)
     {
-        Debug.Log("coroutine " + deltaTime);
+        animator.SetBool("jump", true);
         isJumpings = true;
         yield return new WaitForSeconds(deltaTime);
         playerBody.velocity = Vector3.zero;
         isJumpings = false;
+        animator.SetBool("jump", false);
+    }
+
+    public float GetJumpCharge()
+    {
+        var res = jumpStep.Last().Key;
+        if(timerJump > res)
+        {
+            res = 1;
+        }
+        else
+        {
+            res = timerJump / res;
+        }
+        return res;
     }
 }
