@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 32207be206e45704da703b2a13dceba1
+=======
+guid: fd265d88594496c46ae575b926ffab1e
+>>>>>>> origin/SautCharge
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

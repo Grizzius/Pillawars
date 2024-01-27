@@ -15,14 +15,21 @@ providers = {
 		priority = 90
 		defaultAction = null
 	}
-	profilermarkers = {
+<<<<<<< HEAD
+=======
+	adb = {
 		active = false
-		priority = 100
+		priority = 2500
 		defaultAction = null
 	}
-	store = {
+	asset = {
 		active = true
-		priority = 100
+		priority = 25
+		defaultAction = null
+	}
+	find = {
+		active = true
+		priority = 25
 		defaultAction = null
 	}
 	log = {
@@ -30,11 +37,39 @@ providers = {
 		priority = 210
 		defaultAction = null
 	}
+>>>>>>> origin/SautCharge
+	profilermarkers = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+<<<<<<< HEAD
+=======
+	performance = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+>>>>>>> origin/SautCharge
+	store = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+<<<<<<< HEAD
+	log = {
+		active = false
+		priority = 210
+		defaultAction = null
+	}
+=======
+>>>>>>> origin/SautCharge
 	scene = {
 		active = true
 		priority = 50
 		defaultAction = null
 	}
+<<<<<<< HEAD
 	find = {
 		active = true
 		priority = 25
@@ -55,6 +90,8 @@ providers = {
 		priority = 25
 		defaultAction = null
 	}
+=======
+>>>>>>> origin/SautCharge
 }
 objectSelectors = {
 }
