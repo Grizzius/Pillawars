@@ -19,13 +19,16 @@ public class Movement : MonoBehaviour
     [SerializeField] private LayerMask Floor;
     [SerializeField] private Transform Feet;
 
+
     [SerializeField] private float Speed;
     [SerializeField] private float Sensitivity;
     [SerializeField] private float JumpForce;
+    public List<Rigidbody2D> rbList;
+    public Animator animator;
 
     private void Start()
     {
-
+        setKinematic(true);
     }
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
@@ -47,11 +50,29 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(Physics.CheckSphere(Feet.position, 0.1f, Floor))
+            if(Physics.OverlapSphere(Feet.position, 0.1f, Floor).Length > 0)
             {
                 playerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             }
         }
     }
-  
+
+    void setKinematic(bool newValue)
+    {
+
+        //Get an array of components that are of type Rigidbody
+        Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+
+        //For each of the components in the array, treat the component as a Rigidbody and set its isKinematic and detectCollisions property
+        foreach (Component c in components)
+        {
+            (c as Rigidbody).isKinematic = newValue;
+            (c as Rigidbody).detectCollisions = !newValue;
+        }
+
+        //Sets PLAYER rigid body as opposite
+        playerBody.isKinematic = !newValue;
+        playerBody.detectCollisions = newValue;
+
+    }
 }
