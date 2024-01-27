@@ -103,13 +103,7 @@ public class Movement : MonoBehaviour
     {
         jumpDuration = 0;
         //Va checker quel longueur de saut correspond au temps de maintiens de la touche de saut
-        foreach(KeyValuePair<float, float> keyValuePair in jumpStep)
-        {
-            if(keyValuePair.Key < timerJump)
-            {
-                jumpDuration = keyValuePair.Value;
-            }
-        }
+        SetJumpDuration(t);
         if (jumpDuration > 0)
         {
             playerBody.AddForce(Vector3.up * jumpUpAngle, ForceMode.Impulse);
@@ -126,16 +120,19 @@ public class Movement : MonoBehaviour
     {
         if (Physics.OverlapSphere(Feet.position, 0.1f, Floor).Length > 0)
         {
+            //premier appuie de la touche
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 timerJump = DefautJumpDuration;
                 return true;
             }
+            //Incrémentation pour retenir le temps de maintien de la touche
             else if (Input.GetKey(KeyCode.Space))
             {
                 timerJump += Time.deltaTime;
                 return true;
             }
+            //Fait sauter le personnage au relachement de la touche 
             else if (Input.GetKeyUp(KeyCode.Space))
             {
                 Debug.Log("Saute " + timerJump);
@@ -183,5 +180,17 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(deltaTime);
         playerBody.velocity = Vector3.zero;
         isJumpings = false;
+    }
+
+    public void SetJumpDuration(float timeInput)
+    {
+        jumpDuration = 0;
+        foreach (KeyValuePair<float, float> keyValuePair in jumpStep)
+        {
+            if (keyValuePair.Key < timerJump)
+            {
+                jumpDuration = keyValuePair.Value;
+            }
+        }
     }
 }
