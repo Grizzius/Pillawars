@@ -159,10 +159,12 @@ public class PlayerController : MonoBehaviour
         float t = initT;
         while(t > 0)
         {
+            playerInput.enabled = false;
             rb.AddForce(dir * bonkStrenght * (1 - t / initT), ForceMode.Acceleration);
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        playerInput.enabled = true;
         print("End BONK");
     }
 }
