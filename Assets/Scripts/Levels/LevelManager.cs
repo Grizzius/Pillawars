@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
     public Transform bacALoser;
     public Transform podiumLose;
     public Transform podiumWin;
+    public ParticleSystem deathEffect;
+    
     private void Awake()
     {
         Instance = this;
@@ -31,6 +33,7 @@ public class LevelManager : MonoBehaviour
 
     public void PlayerLose(Transform t)
     {
+        Instantiate(deathEffect, t.position, Quaternion.identity);
         t.position = bacALoser.position;
         GameManager.Instance.cameraPivot.RemovePlayer(t.GetComponent<PlayerInput>());
         CheckWinner();
@@ -60,7 +63,7 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// petit décalage temporel pour s'assurer que le décor apparaisse avant que les joueurs arrivent sur le niveau 
+    /// petit dï¿½calage temporel pour s'assurer que le dï¿½cor apparaisse avant que les joueurs arrivent sur le niveau 
     /// </summary>
     /// <returns></returns>
     IEnumerator DelaySpawn()
@@ -79,7 +82,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Win");
         if (GameManager.Instance.cameraPivot.IsStillOneGuy())
         {
-            //Téléportation podium
+            //Tï¿½lï¿½portation podium
             StartCoroutine(NextLevel(GameManager.Instance.playerInputList[0].transform));
         }
     }

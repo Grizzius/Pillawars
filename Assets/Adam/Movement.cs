@@ -15,6 +15,10 @@ public class Movement : MonoBehaviour
     
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Transform PlayerCamera;
+    [SerializeField] private PlayerController playerController;
+
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource landSound;
 
     //Jump System
     Vector3 jumpDirection;
@@ -150,6 +154,7 @@ public class Movement : MonoBehaviour
         float t = deltaTime;
         animator.SetBool("jump", true);
         isJumpings = true;
+        StartCoroutine(playerController.SpawnSound(jumpSound));
         jumpDirection = transform.forward * JumpForce;
         playerBody.AddForce( new Vector3(0, jumpUpAngle, 0), ForceMode.VelocityChange);
         while (t > 0)
@@ -160,6 +165,7 @@ public class Movement : MonoBehaviour
         }
         playerBody.velocity = Vector3.zero;
         isJumpings = false;
+        StartCoroutine(playerController.SpawnSound(landSound));
         animator.SetBool("jump", false);
     }
 

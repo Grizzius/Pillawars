@@ -9,11 +9,30 @@ public class PlayerFX : MonoBehaviour
     public SpriteRenderer cursorSpriteRenderer;
     public SpriteRenderer ChargerSpriteRenderer;
     public Transform chargeTransform;
+    public AudioClip[] footsteps;
+    public AudioSource audioPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         InitColor(colorPlayer);
+    }
+
+    public void PlayFootStep()
+    {
+        StartCoroutine(PlayFootStepRoutine());
+    }
+
+    public IEnumerator PlayFootStepRoutine()
+    {
+        AudioClip clip = footsteps[Random.Range(0, footsteps.Length)];
+        var instance = Instantiate(audioPrefab, transform.position, Quaternion.identity, transform);
+        yield return new WaitForEndOfFrame();
+        instance.enabled = true;
+        instance.clip = clip;
+        instance.Play();
+        yield return new WaitForSeconds(clip.length);
+        Destroy(instance.gameObject);
     }
 
     // Update is called once per frame
