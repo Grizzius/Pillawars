@@ -16,11 +16,11 @@ public class Lava : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.tag == "Player")
+        if(collision.transform.tag == "Player")
         {
-            //Mort d'un personnage
+            
         }
     }
 }

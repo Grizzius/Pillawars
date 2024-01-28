@@ -33,12 +33,13 @@ public class Movement : MonoBehaviour
         loin,
         tresLoin
     }
+
     /// <summary>
     /// Temps de touche maintenue requis en cl� et le temps de saut � appliquer en valeur
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.0f, 0.4f }, {2, .6f}
+        { 0.0f, 0.5f }, {2, .8f}
     };
 
 
@@ -48,7 +49,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        setKinematic(true);
+
     }
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
@@ -67,8 +68,9 @@ public class Movement : MonoBehaviour
 
     void RotateForward(Vector2 direction)
     {
-        Quaternion rotGoal = Quaternion.LookRotation(new Vector3(direction.x,0,direction.y));
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
+        transform.forward = new Vector3(direction.x, 0, direction.y);
+        //Quaternion rotGoal = Quaternion.LookRotation(new Vector3(direction.x,0,direction.y));
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
     }
 
     public void OnJump(InputAction.CallbackContext callbackContext)
@@ -144,33 +146,9 @@ public class Movement : MonoBehaviour
         {
             //playerBody.AddForce((Vector3.up * jumpUpAngle), ForceMode.Impulse);
             jumpDirection = new Vector3(lastPlayerDirection.x, 0, lastPlayerDirection.y);
-            Debug.Log(jumpDirection);
             StartCoroutine(JumpDuration(jumpDuration));
         }
         timerJump = 0;
-    }
-
-    /// <summary>
-    /// true quand on veut que le personnage soit contr�lable
-    /// false lorsque l'on veut profiter de la ragdoll
-    /// </summary>
-    /// <param name="newValue"></param>
-    public void setKinematic(bool newValue)
-    {
-
-        //Get an array of components that are of type Rigidbody
-        Component[] components = GetComponentsInChildren(typeof(Rigidbody));
-
-        //For each of the components in the array, treat the component as a Rigidbody and set its isKinematic and detectCollisions property
-        foreach (Component c in components)
-        {
-            (c as Rigidbody).isKinematic = newValue;
-            (c as Rigidbody).detectCollisions = !newValue;
-        }
-
-        //Sets PLAYER rigid body as opposite
-        playerBody.isKinematic = !newValue;
-        playerBody.detectCollisions = newValue;
     }
 
     IEnumerator JumpDuration(float deltaTime)
@@ -179,6 +157,7 @@ public class Movement : MonoBehaviour
         animator.SetBool("jump", true);
         isJumpings = true;
         jumpDirection = transform.forward * JumpForce;
+        playerBody.AddForce( new Vector3(0, jumpUpAngle, 0), ForceMode.VelocityChange);
         while (t > 0)
         {
             Debug.Log(jumpDirection);
