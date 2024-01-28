@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     public float yeetStrenght;
     public float bonkStrenght;
+
+    private Coroutine bonkRoutine;
+
     public grabable grabed;
     Coroutine grabItemRoutine = null;
     private List<grabable> canBeGrabbed;
@@ -146,7 +149,11 @@ public class PlayerController : MonoBehaviour
 
     public void Bonk(Vector3 bonkForce)
     {
-        StartCoroutine(BonkCoroutine(bonkForce));
+        if(bonkRoutine == null)
+        {
+            bonkRoutine = StartCoroutine(BonkCoroutine(bonkForce));
+        }
+        
     }
 
     IEnumerator BonkCoroutine(Vector3 bonkForce)
@@ -165,6 +172,6 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         playerInput.enabled = true;
-        print("End BONK");
+        bonkRoutine = null;
     }
 }
