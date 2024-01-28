@@ -10,6 +10,11 @@ public class GameManager : StateMachine
     public PlayerInputManager playerInputManager;
     public PlayerInput player1Prefab;
     public CameraPivot cameraPivot;
+    public SoundManager soundManager;
+
+    public AudioClip combatMusic;
+
+    public static float musicVolume = 1f;
 
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,9 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance { get; set; }
     public List<Vector3> spawnPosition;
-    public List<Vector3> spawnRotationAvailable;
+    public List<Vector3> spawnPositionAvailable;
+    public List<Color> playerColors;
+    List<Color> playerColorsAvailable;
 
     private void Awake()
     {
@@ -17,6 +19,8 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+        playerColorsAvailable = new();
+        playerColorsAvailable = playerColors;
     }
 
     // Update is called once per frame
@@ -28,7 +32,7 @@ public class SpawnManager : MonoBehaviour
     public void AddSpawn( Vector3 pos)
     {
         spawnPosition.Add(pos);
-        spawnRotationAvailable = spawnPosition;
+        spawnPositionAvailable = spawnPosition;
     }
 
     public void ClearSpawnList()
@@ -36,13 +40,22 @@ public class SpawnManager : MonoBehaviour
         spawnPosition = new List<Vector3>();
     }
 
-    public Vector3 RollSpawn()
+    public void RollSpawn(Transform playerTransform)
     {
-        var rand = Random.Range(0, spawnRotationAvailable.Count);
-        var pos = spawnRotationAvailable[rand];
-        spawnRotationAvailable[rand] = pos;
-        spawnRotationAvailable.RemoveAt(rand);
-        return pos;
+        var rand = Random.Range(0, spawnPositionAvailable.Count);
+        var pos = spawnPositionAvailable[rand];
+        spawnPositionAvailable.RemoveAt(rand);
+        playerTransform.position = pos;
+
+        AssignColor(playerTransform.GetComponent<PlayerFX>()) ;
+    }
+
+    void AssignColor(PlayerFX playerFX)
+    {
+        var rand = Random.Range(0, playerColorsAvailable.Count);
+        var color = playerColorsAvailable[rand];
+        playerColorsAvailable.RemoveAt(rand);
+        playerFX.InitColor(color);
     }
 
     public void FoundSpawner()
