@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void GrabItem(grabable item)
     {
         item.transform.parent = grabTransform;
@@ -135,8 +136,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator BonkCoroutine()
     {
-
-        yield return new WaitForSeconds(0.3f);
-
+        print("Start BONK");
+        movement.setKinematic(true);
+        movement.animator.enabled = false;
+        yield return new WaitForSeconds(3f);
+        movement.setKinematic(false);
+        movement.animator.enabled = true;
+        print("End BONK");
     }
 }

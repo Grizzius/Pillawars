@@ -28,7 +28,7 @@ public class grabable : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
-        if (other.gameObject.GetComponent<PlayerController>())
+        if (player != null && beingThrown)
         {
             player.Bonk();
         }
@@ -67,7 +67,7 @@ public class grabable : MonoBehaviour
         graber = null;
         yield return new WaitForEndOfFrame();
         rb.isKinematic = false;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(.1f);
         Physics.IgnoreCollision(_collider, other, false);
     }
 

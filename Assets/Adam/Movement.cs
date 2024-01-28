@@ -155,7 +155,7 @@ public class Movement : MonoBehaviour
     /// false lorsque l'on veut profiter de la ragdoll
     /// </summary>
     /// <param name="newValue"></param>
-    void setKinematic(bool newValue)
+    public void setKinematic(bool newValue)
     {
 
         //Get an array of components that are of type Rigidbody
