@@ -94,8 +94,20 @@ public class LevelManager : MonoBehaviour
         GoWinRoom(t);
         yield return new WaitForSeconds(1);
         SceneManager.UnloadScene(nameCurrentScene);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
+        FreezePlayer(true);
         Debug.Log(nameCurrentScene);
         LoadRandomLevel();
+        yield return new WaitForSeconds(2);
+        FreezePlayer(false);
+    }
+
+    public void FreezePlayer(bool b)
+    {
+        foreach(var player in GameManager.Instance.playerInputList)
+        {
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player.GetComponent<PlayerInput>().enabled = !b;
+        }
     }
 }
