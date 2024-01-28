@@ -7,6 +7,7 @@ public class PlayerJoinMenu : MonoBehaviour
 {
     public DisplayPlayerJoined[] displaysPlayerJoined;
     public TextMeshProUGUI countDownMesh;
+
     // Start is called before the first frame update
     void Start()
     {

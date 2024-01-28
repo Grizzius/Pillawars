@@ -12,6 +12,13 @@ public class CameraPivot : MonoBehaviour
     public float camSpeed;
     public float zoomSpeed;
     public float minDistance;
+
+    enum Mode
+    {
+        game,
+        podium
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,5 +88,19 @@ public class CameraPivot : MonoBehaviour
         {
             playerList.Remove(player);
         }
+    }
+
+    /// <summary>
+    /// Reprends le focus sur l'ensemble des participants
+    /// </summary>
+    public void RetrieveAllPlayers()
+    {
+        playerList = new();
+        playerList.AddRange(GameManager.Instance.playerInputList);
+    }
+
+    public bool IsStillOneGuy()
+    {
+        return playerList.Count == 1;
     }
 }
