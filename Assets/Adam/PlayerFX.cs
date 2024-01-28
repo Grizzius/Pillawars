@@ -13,7 +13,7 @@ public class PlayerFX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitColor();
+        InitColor(colorPlayer);
     }
 
     // Update is called once per frame
@@ -23,8 +23,9 @@ public class PlayerFX : MonoBehaviour
         SetJumpCharge(ratio);
     }
 
-    public void InitColor()
+    public void InitColor(Color color)
     {
+        colorPlayer = color;
         cursorSpriteRenderer.color = colorPlayer;
         ChargerSpriteRenderer.color = colorPlayer;
     }

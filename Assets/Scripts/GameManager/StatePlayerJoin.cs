@@ -16,6 +16,7 @@ public class StatePlayerJoin : GameState
     public override IEnumerator Start()
     {
         playerReadyState = new();
+        gameManager.soundManager.PlayNewClip(gameManager.combatMusic);
         yield break;
     }
 
@@ -27,13 +28,7 @@ public class StatePlayerJoin : GameState
         Debug.Log("Player " + (LastPlayerID()) + " joins !");
         gameManager.gameMenu.PlayerJoin(LastPlayerID());
 
-        newPlayer.transform.position = SpawnManager.Instance.RollSpawn();
-        Debug.Log("Spawn : " + newPlayer.gameObject);
-    }
-
-    public void SpawnPositionPlayer(PlayerInput newPlayer)
-    {
-        newPlayer.transform.position = SpawnManager.Instance.RollSpawn();
+       SpawnManager.Instance.RollSpawn(newPlayer.transform);
         Debug.Log("Spawn : " + newPlayer.gameObject);
     }
 
