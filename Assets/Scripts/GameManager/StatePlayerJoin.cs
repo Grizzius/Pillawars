@@ -8,6 +8,7 @@ public class StatePlayerJoin : GameState
 {
     List<bool> playerReadyState;
     Coroutine startCountdownCoroutine;
+
     public StatePlayerJoin(GameManager GameManager) : base(GameManager)
     {
 
@@ -28,7 +29,9 @@ public class StatePlayerJoin : GameState
         Debug.Log("Player " + (LastPlayerID()) + " joins !");
         gameManager.gameMenu.PlayerJoin(LastPlayerID());
 
-       SpawnManager.Instance.RollSpawn(newPlayer.transform);
+
+        newPlayer.transform.position = LevelManager.Instance.bacALoser.position;
+        //Faire Spawn dans la salle d'attente
         Debug.Log("Spawn : " + newPlayer.gameObject);
     }
 
@@ -55,6 +58,7 @@ public class StatePlayerJoin : GameState
         gameManager.playerInputManager.DisableJoining();
         gameManager.gameMenu.playerJoinMenu.gameObject.SetActive(false);
         gameManager.SetState(new StateMainGame(gameManager));
+        LevelManager.Instance.LoadRandomLevel();
     }
 
     public override void ReceivePlayerInput(PlayerInput player)

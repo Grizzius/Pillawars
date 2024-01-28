@@ -160,7 +160,6 @@ public class Movement : MonoBehaviour
         playerBody.AddForce( new Vector3(0, jumpUpAngle, 0), ForceMode.VelocityChange);
         while (t > 0)
         {
-            Debug.Log(jumpDirection);
             playerBody.AddForce(jumpDirection, ForceMode.VelocityChange);
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();

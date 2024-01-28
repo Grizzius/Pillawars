@@ -12,13 +12,12 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        levels[0].AddLevel();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnManager.Instance.FoundSpawner();
+        
     }
 
     // Update is called once per frame
@@ -31,5 +30,31 @@ public class LevelManager : MonoBehaviour
     {
         t.position = bacALoser.position;
         GameManager.Instance.cameraPivot.RemovePlayer(t.GetComponent<PlayerInput>());
+    }
+
+    public void GoWaitingRoom()
+    {
+
+    }
+
+    public void LoadRandomLevel()
+    {
+        int rand = Random.Range(0, levels.Count);
+        levels[0].AddLevel();
+        StartCoroutine(DelaySpawn());
+    }
+
+    /// <summary>
+    /// petit décalage temporel pour s'assurer que le décor apparaisse avant que les joueurs arrivent sur le niveau 
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator DelaySpawn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SpawnManager.Instance.FoundSpawner();
+        foreach (var player in GameManager.Instance.playerInputList)
+        {
+            SpawnManager.Instance.RollSpawn(player.transform);
+        }
     }
 }

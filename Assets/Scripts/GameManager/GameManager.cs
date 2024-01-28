@@ -7,6 +7,7 @@ public class GameManager : StateMachine
 {
     public static GameManager Instance { get; set; }
     public List<PlayerInput> playerInputList;
+    public Dictionary<PlayerInput, bool> playerInputDictionary;
     public InGameMenu gameMenu;
     public PlayerInputManager playerInputManager;
     public PlayerInput player1Prefab;

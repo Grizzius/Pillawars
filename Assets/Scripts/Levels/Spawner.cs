@@ -8,6 +8,6 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         //SpawnManager.Instance.AddSpawn(transform.position);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

@@ -82,4 +82,9 @@ public class CameraPivot : MonoBehaviour
             playerList.Remove(player);
         }
     }
+
+    public void RetrieveAllPlayers()
+    {
+        playerList = GameManager.Instance.playerInputList;
+    }
 }

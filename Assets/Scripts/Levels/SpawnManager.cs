@@ -42,6 +42,7 @@ public class SpawnManager : MonoBehaviour
 
     public void RollSpawn(Transform playerTransform)
     {
+        Debug.Log(spawnPositionAvailable.Count);
         var rand = Random.Range(0, spawnPositionAvailable.Count);
         var pos = spawnPositionAvailable[rand];
         spawnPositionAvailable.RemoveAt(rand);
@@ -65,6 +66,7 @@ public class SpawnManager : MonoBehaviour
 
         foreach (Transform spawn in parentSpawn.GetComponentInChildren<Transform>()) 
         {
+            Debug.Log(spawn.name);
             AddSpawn(spawn.position);
         }
     }
