@@ -11,19 +11,23 @@ public class PlayerController : MonoBehaviour
 {
     GameManager gameManager;
     PlayerInput playerInput;
+
     [SerializeField] Transform grabTransform;
+    [SerializeField] private ParticleSystem impactParticle;
+    [SerializeField] private AudioSource throwSoundPrefab;
+
     public float yeetStrenght;
     public grabable grabed;
     Coroutine grabItemRoutine = null;
     private List<grabable> canBeGrabbed;
-    private Movement movement;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         playerInput = GetComponent<PlayerInput>();
         canBeGrabbed = new();
-        movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -122,8 +126,17 @@ public class PlayerController : MonoBehaviour
         grabed.IsGrabed(this);
     }
 
+    public IEnumerator SpawnSound(AudioSource source)
+    {
+        Instantiate(source, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(source.clip.length);
+        Destroy(source.gameObject);
+    }
+
     void ThrowItem(Vector3 direction)
     {
+        StartCoroutine(SpawnSound(throwSoundPrefab));
+
         grabed.transform.parent = null;
         StartCoroutine(grabed.Yeet(direction * yeetStrenght, this));
         grabed = null;
@@ -137,11 +150,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator BonkCoroutine()
     {
         print("Start BONK");
-        //movement.setKinematic(true);
-        movement.animator.enabled = false;
+        Instantiate(impactParticle, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(3f);
-        //movement.setKinematic(false);
-        movement.animator.enabled = true;
         print("End BONK");
     }
 }

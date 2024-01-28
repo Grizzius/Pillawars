@@ -1250,6 +1250,9 @@ MonoBehaviour:
   input: {fileID: 2521255995888726419}
   playerBody: {fileID: 5955444751232615739}
   PlayerCamera: {fileID: 0}
+  playerController: {fileID: 7197002340606617923}
+  jumpSound: {fileID: 888749871479835909, guid: a8aa466e7af1ec4418d751d4c67ae334, type: 3}
+  landSound: {fileID: 888749871479835909, guid: 9a151874bb0ad284ca15f2dec2dc01b2, type: 3}
   Floor:
     serializedVersion: 2
     m_Bits: 8
@@ -1276,6 +1279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabTransform: {fileID: 2336598894598396397}
+  impactParticle: {fileID: 7175574303636086503, guid: b5ffd9b43a4b01344922c94837af280c, type: 3}
+  throwSoundPrefab: {fileID: 888749871479835909, guid: 29369c69ffa87324d893a3d9fd11dc66, type: 3}
   yeetStrenght: 25
   grabed: {fileID: 0}
 --- !u!114 &2521255995888726419

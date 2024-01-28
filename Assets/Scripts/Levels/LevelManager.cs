@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; set; }
     public List<LevelScriptable> levels;
     public Transform bacALoser;
+    public ParticleSystem deathEffect;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class LevelManager : MonoBehaviour
 
     public void PlayerLose(Transform t)
     {
+        Instantiate(deathEffect, t.position, Quaternion.identity);
         t.position = bacALoser.position;
         GameManager.Instance.cameraPivot.RemovePlayer(t.GetComponent<PlayerInput>());
     }
