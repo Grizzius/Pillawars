@@ -137,10 +137,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator BonkCoroutine()
     {
         print("Start BONK");
-        movement.setKinematic(true);
+        //movement.setKinematic(true);
         movement.animator.enabled = false;
         yield return new WaitForSeconds(3f);
-        movement.setKinematic(false);
+        //movement.setKinematic(false);
         movement.animator.enabled = true;
         print("End BONK");
     }
