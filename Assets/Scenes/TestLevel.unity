@@ -2336,6 +2336,7 @@ MonoBehaviour:
   bacALoser: {fileID: 1764871141}
   podiumLose: {fileID: 1764871141}
   podiumWin: {fileID: 258325103}
+  deathEffect: {fileID: 7175574303636086503, guid: b531bb241c4696c4aa7f30645c35d50b, type: 3}
 --- !u!114 &824038787
 MonoBehaviour:
   m_ObjectHideFlags: 0

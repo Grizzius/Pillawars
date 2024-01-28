@@ -128,9 +128,9 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator SpawnSound(AudioSource source)
     {
-        Instantiate(source, transform.position, Quaternion.identity);
+        var audio = Instantiate(source, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(source.clip.length);
-        Destroy(source.gameObject);
+        Destroy(audio);
     }
 
     void ThrowItem(Vector3 direction)
