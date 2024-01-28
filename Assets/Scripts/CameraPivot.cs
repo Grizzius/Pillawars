@@ -103,4 +103,20 @@ public class CameraPivot : MonoBehaviour
     {
         return playerList.Count == 1;
     }
+
+    /// <summary>
+    /// Renvoie le premier de la liste, sert notemment pour récupérer le vainqueur d'une partie
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetFirstPlayer()
+    {
+        if (playerList.Count > 0)
+        {
+            return playerList[0].transform;
+        }
+        else 
+        { 
+            return null;
+        }
+    }
 }

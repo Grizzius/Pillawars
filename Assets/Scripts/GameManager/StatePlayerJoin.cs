@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,7 @@ public class StatePlayerJoin : GameState
         gameManager.playerInputList.Add(newPlayer);
         playerReadyState.Add(false);
         gameManager.cameraPivot.AddPlayer(newPlayer);
+        SpawnManager.Instance.AssignColor(newPlayer.GetComponent<PlayerFX>());
         Debug.Log("Player " + (LastPlayerID()) + " joins !");
         gameManager.gameMenu.PlayerJoin(LastPlayerID());
 

@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("GO WIN ROOM");
         foreach (PlayerInput p in GameManager.Instance.playerInputList)
         {
-            if(p.transform !=  transformWinner)
+            if(p.transform.gameObject.GetInstanceID() !=  transformWinner.gameObject.GetInstanceID())
             {
                 p.transform.position = podiumLose.position;
             }
@@ -83,13 +83,13 @@ public class LevelManager : MonoBehaviour
         if (GameManager.Instance.cameraPivot.IsStillOneGuy())
         {
             //T�l�portation podium
-            StartCoroutine(NextLevel(GameManager.Instance.playerInputList[0].transform));
+            StartCoroutine(NextLevel(GameManager.Instance.cameraPivot.GetFirstPlayer()));
         }
     }
 
     IEnumerator NextLevel(Transform t)
     {
-        Debug.Log("NEXT LEVEL");
+        Debug.Log("NEXT LEVEL : " + t.name);
         yield return new WaitForSeconds(2);
         GoWinRoom(t);
         yield return new WaitForSeconds(1);

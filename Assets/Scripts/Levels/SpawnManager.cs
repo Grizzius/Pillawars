@@ -48,10 +48,10 @@ public class SpawnManager : MonoBehaviour
         spawnPositionAvailable.RemoveAt(rand);
         playerTransform.position = pos;
 
-        AssignColor(playerTransform.GetComponent<PlayerFX>()) ;
+        //AssignColor(playerTransform.GetComponent<PlayerFX>()) ;
     }
 
-    void AssignColor(PlayerFX playerFX)
+    public void AssignColor(PlayerFX playerFX)
     {
         var rand = Random.Range(0, playerColorsAvailable.Count);
         var color = playerColorsAvailable[rand];
