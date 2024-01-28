@@ -75,17 +75,13 @@ public class Movement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
-        Debug.Log("Jump");
-
         if (callbackContext.started)
         {
-            Debug.Log("CCCCOMMMMMMMMENCCCCE");
             StartCoroutine(HoldButtonRoutine());
         }
 
         IEnumerator HoldButtonRoutine()
         {
-            Debug.Log("Jump started");
             timerJump = 0;
             yield return new WaitForEndOfFrame();
             if (callbackContext.canceled)
@@ -95,12 +91,10 @@ public class Movement : MonoBehaviour
             yield return new WaitUntil(callbackContext.ReadValueAsButton);
             while (callbackContext.ReadValueAsButton())
             {
-                Debug.Log("holding Jump");
                 timerJump += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
             yield return new WaitForEndOfFrame();
-            Debug.Log("Finished jump, jump force : " + timerJump);
             Jump(timerJump);
         }
     }
@@ -164,7 +158,6 @@ public class Movement : MonoBehaviour
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        Debug.Log("isJumpings set to false");
         playerBody.velocity = Vector3.zero;
         isJumpings = false;
         animator.SetBool("jump", false);
