@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem impactParticle;
     [SerializeField] private AudioSource throwSoundPrefab;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Movement movement;
 
     public float yeetStrenght;
     public float bonkStrenght;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        movement = GetComponent<Movement>();
         playerInput = GetComponent<PlayerInput>();
         canBeGrabbed = new();
     }
@@ -166,12 +168,12 @@ public class PlayerController : MonoBehaviour
         float t = initT;
         while(t > 0)
         {
-            playerInput.enabled = false;
+            movement.canMove = false;
             rb.AddForce(dir * bonkStrenght * (1 - t / initT), ForceMode.Acceleration);
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        playerInput.enabled = true;
+        movement.canMove = true;
         bonkRoutine = null;
     }
 }

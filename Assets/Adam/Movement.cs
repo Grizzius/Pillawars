@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private Rigidbody playerBody;
     [SerializeField] private Transform PlayerCamera;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private PlayerFX fx;
+    [SerializeField] private TrailRenderer trail;
 
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private AudioSource landSound;
@@ -30,6 +32,7 @@ public class Movement : MonoBehaviour
     public float maxJumpDuration = 2;
     public float turnSpeed;
     public bool isJumpings = false;
+    public bool canMove = true;
 
     enum JumpCharge
     {
@@ -53,7 +56,27 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        CalculateTrailColor();
+    }
 
+    void CalculateTrailColor()
+    {
+        print(fx.colorPlayer);
+        var gradient = new Gradient();
+
+        var colorKeys = new GradientColorKey[2];
+        colorKeys[0] = new GradientColorKey(fx.colorPlayer, 0f);
+        colorKeys[1] = new GradientColorKey(fx.colorPlayer, 1f);
+
+        var alpha = new GradientAlphaKey[2];
+        alpha[0] = new GradientAlphaKey(1f, 0f);
+        alpha[1] = new GradientAlphaKey(1f, 1f);
+
+        gradient.SetKeys(colorKeys, alpha);
+
+        print(gradient.Evaluate(0.5f));
+
+        trail.colorGradient = gradient;
     }
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
@@ -105,7 +128,10 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (canMove)
+        {
+            MovePlayer();
+        }
     }
 
     private void MovePlayer()
@@ -154,6 +180,7 @@ public class Movement : MonoBehaviour
         float t = deltaTime;
         animator.SetBool("jump", true);
         isJumpings = true;
+        trail.enabled = true;
         StartCoroutine(playerController.SpawnSound(jumpSound));
         jumpDirection = transform.forward * JumpForce;
         playerBody.AddForce( new Vector3(0, jumpUpAngle, 0), ForceMode.VelocityChange);
@@ -165,6 +192,7 @@ public class Movement : MonoBehaviour
         }
         playerBody.velocity = Vector3.zero;
         isJumpings = false;
+        trail.enabled = false;
         StartCoroutine(playerController.SpawnSound(landSound));
         animator.SetBool("jump", false);
     }
