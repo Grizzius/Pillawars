@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance { get; set; }
     public List<LevelScriptable> levels;
+    public Transform bacALoser;
 
     private void Awake()
     {
+        Instance = this;
         levels[0].AddLevel();
     }
 
@@ -21,5 +25,11 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
             
+    }
+
+    public void PlayerLose(Transform t)
+    {
+        t.position = bacALoser.position;
+        GameManager.Instance.cameraPivot.RemovePlayer(t.GetComponent<PlayerInput>());
     }
 }

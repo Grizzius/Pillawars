@@ -20,7 +20,7 @@ public class Lava : MonoBehaviour
     {
         if(collision.transform.tag == "Player")
         {
-            
+            LevelManager.Instance.PlayerLose(collision.transform);
         }
     }
 }

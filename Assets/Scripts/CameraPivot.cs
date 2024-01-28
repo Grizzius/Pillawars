@@ -69,4 +69,17 @@ public class CameraPivot : MonoBehaviour
 
         return Mathf.Max(distanceX, distanceY) + minDistance;
     }
+
+    public void Reset()
+    {
+        playerList.Clear();
+    }
+
+    public void RemovePlayer(PlayerInput player)
+    {
+        if(playerList.Contains(player))
+        {
+            playerList.Remove(player);
+        }
+    }
 }

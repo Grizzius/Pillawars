@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : StateMachine
 {
+    public static GameManager Instance { get; set; }
     public List<PlayerInput> playerInputList;
     public InGameMenu gameMenu;
     public PlayerInputManager playerInputManager;
@@ -15,6 +16,11 @@ public class GameManager : StateMachine
     public AudioClip combatMusic;
 
     public static float musicVolume = 1f;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
