@@ -1281,7 +1281,9 @@ MonoBehaviour:
   grabTransform: {fileID: 2336598894598396397}
   impactParticle: {fileID: 7175574303636086503, guid: b5ffd9b43a4b01344922c94837af280c, type: 3}
   throwSoundPrefab: {fileID: 888749871479835909, guid: 29369c69ffa87324d893a3d9fd11dc66, type: 3}
+  rb: {fileID: 5955444751232615739}
   yeetStrenght: 25
+  bonkStrenght: 600
   grabed: {fileID: 0}
 --- !u!114 &2521255995888726419
 MonoBehaviour:

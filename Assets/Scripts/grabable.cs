@@ -30,7 +30,7 @@ public class grabable : MonoBehaviour
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if (player != null && beingThrown)
         {
-            player.Bonk();
+            player.Bonk(rb.velocity.normalized);
         }
     }
 

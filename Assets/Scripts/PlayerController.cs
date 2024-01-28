@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform grabTransform;
     [SerializeField] private ParticleSystem impactParticle;
     [SerializeField] private AudioSource throwSoundPrefab;
+    [SerializeField] private Rigidbody rb;
 
     public float yeetStrenght;
+    public float bonkStrenght;
     public grabable grabed;
     Coroutine grabItemRoutine = null;
     private List<grabable> canBeGrabbed;
@@ -142,16 +144,25 @@ public class PlayerController : MonoBehaviour
         grabed = null;
     }
 
-    public void Bonk()
+    public void Bonk(Vector3 bonkForce)
     {
-        StartCoroutine(BonkCoroutine());
+        StartCoroutine(BonkCoroutine(bonkForce));
     }
 
-    IEnumerator BonkCoroutine()
+    IEnumerator BonkCoroutine(Vector3 bonkForce)
     {
         print("Start BONK");
         Instantiate(impactParticle, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(3f);
+        Vector3 dir = new Vector3(bonkForce.x, 0, bonkForce.z);
+
+        float initT = 0.5f;
+        float t = initT;
+        while(t > 0)
+        {
+            rb.AddForce(dir * bonkStrenght * (1 - t / initT), ForceMode.Acceleration);
+            t -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         print("End BONK");
     }
 }
