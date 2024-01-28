@@ -5,11 +5,17 @@ using UnityEngine.InputSystem;
 
 public class GameManager : StateMachine
 {
+    public static GameManager Instance { get; set; }
     public List<PlayerInput> playerInputList;
     public InGameMenu gameMenu;
     public PlayerInputManager playerInputManager;
     public PlayerInput player1Prefab;
     public CameraPivot cameraPivot;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
