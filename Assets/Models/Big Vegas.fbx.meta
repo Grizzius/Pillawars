@@ -3,7 +3,22 @@ guid: 07ad00fb51f29494ba889294347f1536
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Elvis_FaceAnimMap
+    second: {fileID: 2800000, guid: 14cd46cb0766e1d4b9f73c435c990230, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FatElvis_diffuse
+    second: {fileID: 2800000, guid: 91856c33ab578d2448fc74c77dda2075, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FatElvis_normal
+    second: {fileID: 2800000, guid: 3b0f8a0f564c64441b2f4e26a2beace6, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

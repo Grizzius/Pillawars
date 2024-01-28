@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     Dictionary<float, float> jumpStep = new Dictionary<float, float>()
     {
-        { 0.0f, 0.5f }, {2, .8f}
+        { 0.0f, 0.5f }, {2, 1}
     };
 
 
@@ -102,7 +102,7 @@ public class Movement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.started)
+        if (callbackContext.started && !isJumpings && Physics.OverlapSphere(Feet.transform.position, 0.5f, Floor).Count() > 0)
         {
             StartCoroutine(HoldButtonRoutine());
         }

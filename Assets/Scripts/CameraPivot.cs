@@ -12,6 +12,7 @@ public class CameraPivot : MonoBehaviour
     public float camSpeed;
     public float zoomSpeed;
     public float minDistance;
+    float zOffset;
 
     enum Mode
     {
@@ -29,7 +30,8 @@ public class CameraPivot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerList.Count > 0)
+        zOffset = -((CalculateCamHeight() - minDistance)/ 2);
+        if (playerList.Count > 0)
         {
             Vector2 targetPosition = PlayersAveragePosition();
             float xPosition = Mathf.SmoothStep(transform.position.x, targetPosition.x, Time.deltaTime / camSpeed);
@@ -37,7 +39,7 @@ public class CameraPivot : MonoBehaviour
             transform.position = new Vector3(xPosition, 0, yPosition);
 
             float zoom = Mathf.SmoothStep(camera.transform.position.y, CalculateCamHeight(), Time.deltaTime / zoomSpeed);
-            camera.transform.localPosition = new Vector3(0, zoom, -2);
+            camera.transform.localPosition = new Vector3(0, zoom, zOffset);
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 184202825}
   - component: {fileID: 184202824}
   - component: {fileID: 184202823}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,7 +989,7 @@ GameObject:
   - component: {fileID: 251750776}
   - component: {fileID: 251750775}
   - component: {fileID: 251750774}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2116,7 +2116,7 @@ GameObject:
   - component: {fileID: 718621424}
   - component: {fileID: 718621423}
   - component: {fileID: 718621422}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2631,7 +2631,7 @@ GameObject:
   - component: {fileID: 863302560}
   - component: {fileID: 863302559}
   - component: {fileID: 863302558}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3630,7 +3630,7 @@ GameObject:
   - component: {fileID: 1368607163}
   - component: {fileID: 1368607162}
   - component: {fileID: 1368607161}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PanierALoser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4493,7 +4493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826829098}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Podium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
